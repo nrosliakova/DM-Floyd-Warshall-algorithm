@@ -13,7 +13,11 @@ public static class Graph
                 Console.Write("\n");
                 n = 1;
             }
-            Console.Write($"{el} ");
+            //Console.Write($"{el} ");
+            if (el == int.MaxValue)
+                Console.Write("? ");
+            else
+                Console.Write($"{el} ");
             n++;
         }
         Console.Write("\n");
