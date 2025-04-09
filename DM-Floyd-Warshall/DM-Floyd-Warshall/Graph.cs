@@ -30,6 +30,8 @@ public static class Graph
             {
                 var neibhor_vertex = edge.vertex;
                 var edge_weight = edge.weight;
+                if (edge_weight == int.MaxValue)
+                    continue;
                 Console.Write($"{neibhor_vertex} (weight = {edge_weight}); ");
             }
             Console.WriteLine();
