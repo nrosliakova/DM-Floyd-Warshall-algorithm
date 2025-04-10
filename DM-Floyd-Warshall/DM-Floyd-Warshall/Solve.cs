@@ -2,24 +2,9 @@
 
 public class Solve
 {
-    public static int solve(int n, int m, int s, int d, List<(int vertex1, int vertex2, int weight)> edges)
+    public int[,] SolveMatrix(int[,] matrix)
     {
-        if (s == d) return 0;
-        var matrix = new int[n, n];
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-            {
-                if(i==j)
-                    matrix[i, j] = 0;
-                else
-                    matrix[i, j] = int.MaxValue;
-            }
-
-        foreach(var edge in edges)
-        {
-            matrix[edge.vertex1 - 1, edge.vertex2 - 1] = edge.weight;
-            matrix[edge.vertex2 - 1, edge.vertex1 - 1] = edge.weight;
-        }
+        int n = matrix.GetLength(0);
 
         for (var k = 0; k < n; k++)
         {
@@ -39,6 +24,6 @@ public class Solve
             }
         }
 
-        return matrix[s - 1, d - 1];
+        return matrix;
     }
 }

@@ -11,5 +11,10 @@ internal class Program
         Graph.PrintList(aList);
         var m2 = Graph.ConvertListToMatrix(aList);
         Graph.PrintMatrix(m2, 5);
+
+        Solve solver = new Solve();
+        Console.WriteLine("\nSolved matrix:");
+        var distancematrix = solver.SolveMatrix(matrix);
+        Graph.PrintMatrix(distancematrix, distancematrix.GetLength(0));
     }
 }
