@@ -4,7 +4,7 @@ public class GenerateGraph
 {
     public int[,] Generate(int vertexNumber, double density)
     {
-        int edgesNumber = (int)(density * vertexNumber * (vertexNumber - 1)) / 2;
+        int edgesNumber = (int)((density * vertexNumber * (vertexNumber - 1)) / 2);
         int[,] matrix = new int[vertexNumber, vertexNumber];
         
         for (int i = 0; i < vertexNumber; i++)
@@ -23,20 +23,21 @@ public class GenerateGraph
         }
         
         int count = 0;
-        for (int i = 0; i < edgesNumber; i++)
+        List<(int, int)> visited = new List<(int, int)>();
+        while (visited.Count != edgesNumber*2)
         {
             Random rand = new Random();
-            int randomI = rand.Next(0, vertexNumber-1);
-            int randomJ = rand.Next(0, vertexNumber-1);
-            List<int> visitedI = new List<int>();
-            List<int> visitedJ = new List<int>();
+            int randomI = rand.Next(0, vertexNumber);
+            int randomJ = rand.Next(0, vertexNumber);
 
-            if (!visitedI.Contains(randomI) && !visitedJ.Contains(randomJ) && matrix[randomI, randomJ] != 0)
+            if (!visited.Contains((randomI, randomJ)) && !visited.Contains((randomJ, randomI)) && randomI != randomJ)
             {
-                matrix[randomI, randomJ] = rand.Next(1, 10);
+                int value = rand.Next(1, 10);
+                matrix[randomI, randomJ] = value;
+                matrix[randomJ, randomI] = value;
                 count++;
-                visitedI.Add(randomI);
-                visitedJ.Add(randomJ);
+                visited.Add((randomI, randomJ));
+                visited.Add((randomJ, randomI));
             }
         }
         Console.WriteLine($"Edges count:{count}");
