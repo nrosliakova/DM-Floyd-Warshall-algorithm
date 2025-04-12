@@ -5,7 +5,7 @@ internal class Program
     static void Main(string[] args)
     {
         GenerateGraph generator = new GenerateGraph();
-        var matrix = generator.Generate(10, 2);
+        var matrix = generator.Generate(10, 0.20);
         Graph.PrintMatrix(matrix, 10);
         var aList = Graph.ConvertMatrixToList(matrix, 5);
         Graph.PrintList(aList);
